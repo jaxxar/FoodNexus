@@ -12,5 +12,30 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="TextColor">@color/white</item>
     </style>
+
+    <style name="TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">?attr/TextColor</item>
+        <item name="android:textColorHint">?attr/TextColor</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">?attr/TextColor</item>
+        <item name="colorControlNormal">?attr/TextColor</item>
+        <item name="colorControlActivated">?attr/TextColor</item>
+        <item name="colorControlHighlight">?attr/TextColor</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/box_corner_radius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/box_corner_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/box_corner_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/box_corner_radius</item>
+        <item name="boxStrokeWidth">@dimen/box_stroke_width</item>
+        <item name="android:layout_marginHorizontal">50dp</item>
+        <item name="android:textColor">?attr/TextColor</item>
+        <item name="android:textColorHint">?attr/TextColor</item>
+        <item name="android:colorAccent">?attr/TextColor</item>
+        <item name="passwordToggleTint">?attr/TextColor</item>
+    </style>
+
 </resources>
