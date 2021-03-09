@@ -41,6 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/image_frame">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_title_edit_text"
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,6 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_title">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_type_edit_text"
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,6 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_type">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_category_edit_text"
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,12 +104,13 @@
         app:layout_constraintTop_toBottomOf="@+id/text_category">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_ingredients_edit_text"
             style="@style/TextStyle"
+            android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
-            android:inputType="text"
-            android:lines="4" />
+            android:minLines="5" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,11 +126,10 @@
         app:layout_constraintTop_toBottomOf="@+id/text_ingredients">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_time_edit_text"
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
             android:imeOptions="actionNext"
             android:inputType="number" />
 
@@ -144,6 +147,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_time">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_directions_edit_text"
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -153,9 +157,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/add_dish_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginHorizontal="@dimen/layout_marginHorizontal"
         android:layout_marginTop="10dp"
         android:text="@string/add_dish"
         app:layout_constraintEnd_toEndOf="parent"

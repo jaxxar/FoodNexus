@@ -31,7 +31,7 @@
         <item name="boxCornerRadiusTopEnd">@dimen/box_corner_radius</item>
         <item name="boxCornerRadiusTopStart">@dimen/box_corner_radius</item>
         <item name="boxStrokeWidth">@dimen/box_stroke_width</item>
-        <item name="android:layout_marginHorizontal">50dp</item>
+        <item name="android:layout_marginHorizontal">@dimen/layout_marginHorizontal</item>
         <item name="android:textColor">?attr/TextColor</item>
         <item name="android:textColorHint">?attr/TextColor</item>
         <item name="android:colorAccent">?attr/TextColor</item>

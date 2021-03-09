@@ -4,6 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_add_dish">Add dish</string>
+    <string name="please_fill_this_field">Please fill this field</string>
 
     <!--add/edit dish-->
     <string name="title">Title</string>
