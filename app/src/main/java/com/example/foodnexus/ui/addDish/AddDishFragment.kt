@@ -1,11 +1,13 @@
 package com.example.foodnexus.ui.addDish
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.foodnexus.R
+import com.example.foodnexus.databinding.DialogSelectImageBinding
 import com.example.foodnexus.databinding.FragmentAddDishBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -26,7 +28,9 @@ class AddDishFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.addImage.setOnClickListener { }
+        binding.addImage.setOnClickListener {
+            displaySelectImageDialog()
+        }
         binding.addDishButton.setOnClickListener {
             if (validator()) {
                 dismiss()
@@ -72,6 +76,20 @@ class AddDishFragment : BottomSheetDialogFragment() {
             binding.textDirections.error = null
         }
         return true
+    }
+
+    private fun displaySelectImageDialog() {
+        val dialog = context?.let { Dialog(it) }
+        val binding: DialogSelectImageBinding = DialogSelectImageBinding.inflate(layoutInflater)
+        dialog?.setContentView(binding.root)
+
+        binding.cameraImageButton.setOnClickListener {
+            dialog?.dismiss()
+        }
+        binding.galleryImageButton.setOnClickListener {
+            dialog?.dismiss()
+        }
+        dialog?.show()
     }
 
 }

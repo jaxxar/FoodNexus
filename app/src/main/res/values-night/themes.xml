@@ -14,11 +14,17 @@
         <!-- Customize your theme here. -->
 
         <item name="TextColor">@color/white</item>
+        <item name="VectorColor">@color/purple_200</item>
+        <item name="BackgroundColor">@color/white</item>
     </style>
 
     <style name="TextStyle" parent="TextAppearance.AppCompat">
         <item name="android:textColor">?attr/TextColor</item>
         <item name="android:textColorHint">?attr/TextColor</item>
+    </style>
+
+    <style name="DialogBackgroundColor" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">?attr/BackgroundColor</item>
     </style>
 
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
