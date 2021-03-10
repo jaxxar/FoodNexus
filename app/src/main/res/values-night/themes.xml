@@ -27,6 +27,11 @@
         <item name="android:background">?attr/BackgroundColor</item>
     </style>
 
+    <style name="Theme.NoActionBar" parent="Theme.FoodNexus">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">?attr/TextColor</item>
         <item name="colorControlNormal">?attr/TextColor</item>

@@ -5,6 +5,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_add_dish">Add dish</string>
     <string name="please_fill_this_field">Please fill this field</string>
+    <string name="cancel">Cancel</string>
 
     <!--add/edit dish-->
     <string name="title">Title</string>
@@ -17,5 +18,7 @@
     <string name="select_image_action">Select Image Action</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="go_to_settings_dialog">It Looks like you have turned off permissions required for this feature. It can be enabled under Application Settings</string>
+    <string name="go_to_settings">GO TO SETTINGS</string>
 
 </resources>
