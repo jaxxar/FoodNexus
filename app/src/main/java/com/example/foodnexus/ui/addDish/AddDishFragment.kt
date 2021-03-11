@@ -5,16 +5,27 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.foodnexus.R
 import com.example.foodnexus.databinding.DialogSelectImageBinding
 import com.example.foodnexus.databinding.FragmentAddDishBinding
@@ -27,11 +38,17 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
 class AddDishFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentAddDishBinding
     private lateinit var viewModel: AddDishViewModel
+    private var imagePath = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -177,20 +194,73 @@ class AddDishFragment : BottomSheetDialogFragment() {
             if (requestCode == CAMERA) {
                 data?.extras?.let {
                     val thumbnail: Bitmap = data.extras!!.get("data") as Bitmap
-                    binding.image.setImageBitmap(thumbnail)
+                    Glide.with(this)
+                        .load(thumbnail)
+                        .centerCrop()
+                        .into(binding.image)
+
+                    imagePath = saveImageToStorage(thumbnail)
                 }
             }
             if (requestCode == STORAGE) {
                 data?.let {
                     val selectedImageURI = data.data
-                    binding.image.setImageURI(selectedImageURI)
+                    Glide.with(this)
+                        .load(selectedImageURI)
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .listener(object : RequestListener<Drawable> {
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                Log.e("TAG", "Error loading image", e)
+                                return false
+                            }
+
+                            override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                resource?.let {
+                                    val bitmap = resource.toBitmap()
+                                    imagePath = saveImageToStorage(bitmap)
+                                }
+                                return false
+                            }
+                        })
+                        .into(binding.image)
                 }
             }
         }
     }
 
+    private fun saveImageToStorage(bitmap: Bitmap): String {
+        val wrapper = ContextWrapper(activity?.applicationContext)
+
+        var file = wrapper.getDir(IMAGE_DIRECTORY, Context.MODE_PRIVATE)
+        file = File(file, "${UUID.randomUUID()}.jpg")
+        try {
+            val stream: OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream)
+            stream.flush()
+            stream.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        return file.absolutePath
+    }
+
     companion object {
         private const val CAMERA = 1
         private const val STORAGE = 2
+
+        private const val IMAGE_DIRECTORY = "FoodNexus"
     }
 }
