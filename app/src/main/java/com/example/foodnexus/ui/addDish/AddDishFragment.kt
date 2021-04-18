@@ -18,8 +18,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -27,8 +29,12 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.foodnexus.R
+import com.example.foodnexus.databinding.DialogListBinding
 import com.example.foodnexus.databinding.DialogSelectImageBinding
 import com.example.foodnexus.databinding.FragmentAddDishBinding
+import com.example.foodnexus.ui.adapters.ListItemAdapter
+import com.example.foodnexus.ui.adapters.SelectorCallback
+import com.example.foodnexus.utils.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -44,10 +50,11 @@ import java.io.IOException
 import java.io.OutputStream
 import java.util.*
 
-class AddDishFragment : BottomSheetDialogFragment() {
+class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
 
     private lateinit var binding: FragmentAddDishBinding
     private lateinit var viewModel: AddDishViewModel
+    private lateinit var mDialog: Dialog
     private var imagePath = ""
 
     override fun onCreateView(
@@ -62,12 +69,36 @@ class AddDishFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.addImage.setOnClickListener {
-            displaySelectImageDialog()
-        }
-        binding.addDishButton.setOnClickListener {
-            if (validator()) {
-                dismiss()
+
+        binding.apply {
+            addImage.setOnClickListener {
+                displaySelectImageDialog()
+            }
+            addDishButton.setOnClickListener {
+                if (validator()) {
+                    dismiss()
+                }
+            }
+            textTypeEditText.setOnClickListener {
+                customListDialog(
+                    getString(R.string.type),
+                    resources.getStringArray(R.array.dishTypes).toList(),
+                    Constants.DISH_TYPE
+                )
+            }
+            textCategoryEditText.setOnClickListener {
+                customListDialog(
+                    getString(R.string.category),
+                    resources.getStringArray(R.array.dishCategories).toList(),
+                    Constants.DISH_CATEGORY
+                )
+            }
+            textTimeEditText.setOnClickListener {
+                customListDialog(
+                    getString(R.string.cook_time),
+                    resources.getStringArray(R.array.dishCookTime).toList(),
+                    Constants.DISH_COOKING_TIME
+                )
             }
         }
     }
@@ -108,6 +139,14 @@ class AddDishFragment : BottomSheetDialogFragment() {
             return false
         } else {
             binding.textDirections.error = null
+        }
+        if (viewModel.isDataNotFilled(imagePath)) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.pick_image_error),
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
         }
         return true
     }
@@ -257,10 +296,39 @@ class AddDishFragment : BottomSheetDialogFragment() {
         return file.absolutePath
     }
 
+    private fun customListDialog(title: String, list: List<String>, category: String) {
+        mDialog = Dialog(requireContext())
+        val dialogListBinding = DialogListBinding.inflate(layoutInflater)
+        mDialog.setContentView(dialogListBinding.root)
+        val adapter = context?.let { ListItemAdapter(it, list, category, this) }
+        dialogListBinding.apply {
+            listTitle.text = title
+            listRecyclerView.layoutManager = LinearLayoutManager(context)
+            listRecyclerView.adapter = adapter
+        }
+        mDialog.show()
+    }
+
     companion object {
         private const val CAMERA = 1
         private const val STORAGE = 2
-
         private const val IMAGE_DIRECTORY = "FoodNexus"
+    }
+
+    override fun returnSelection(selection: String, category: String) {
+        when (category) {
+            Constants.DISH_TYPE -> {
+                binding.textTypeEditText.setText(selection)
+                mDialog.dismiss()
+            }
+            Constants.DISH_CATEGORY -> {
+                binding.textCategoryEditText.setText(selection)
+                mDialog.dismiss()
+            }
+            Constants.DISH_COOKING_TIME -> {
+                binding.textTimeEditText.setText(selection)
+                mDialog.dismiss()
+            }
+        }
     }
 }

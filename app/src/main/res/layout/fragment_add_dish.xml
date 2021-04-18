@@ -66,8 +66,11 @@
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:imeOptions="actionNext"
-            android:inputType="text" />
+            android:inputType="text"
+            android:longClickable="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,8 +90,11 @@
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:imeOptions="actionNext"
-            android:inputType="text" />
+            android:inputType="text"
+            android:longClickable="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,10 +112,10 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_ingredients_edit_text"
             style="@style/TextStyle"
-            android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
+            android:inputType="textMultiLine"
             android:minLines="5" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -130,8 +136,11 @@
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:imeOptions="actionNext"
-            android:inputType="number" />
+            android:inputType="number"
+            android:longClickable="false" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
