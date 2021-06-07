@@ -44,12 +44,14 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.util.*
 
+@AndroidEntryPoint
 class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
 
     private lateinit var binding: FragmentAddDishBinding
