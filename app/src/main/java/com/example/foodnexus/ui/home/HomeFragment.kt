@@ -3,17 +3,18 @@ package com.example.foodnexus.ui.home
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodnexus.R
 import com.example.foodnexus.databinding.FragmentHomeBinding
+import com.example.foodnexus.ui.adapters.DishAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,12 +28,25 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater)
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textHome.text = it
-        })
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.dishesRecyclerview.layoutManager = GridLayoutManager(requireContext(), 2)
+        val dishAdapter = DishAdapter(this@HomeFragment)
+        binding.dishesRecyclerview.adapter = dishAdapter
+        homeViewModel.allDishes.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                binding.dishesRecyclerview.visibility = View.VISIBLE
+                binding.noItemsAvailableTextview.visibility = View.GONE
+                dishAdapter.submitList(it)
+            } else {
+                binding.dishesRecyclerview.visibility = View.GONE
+                binding.noItemsAvailableTextview.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

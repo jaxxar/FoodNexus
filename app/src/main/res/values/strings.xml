@@ -21,6 +21,7 @@
     <string name="go_to_settings_dialog">It Looks like you have turned off permissions required for this feature. It can be enabled under Application Settings</string>
     <string name="go_to_settings">GO TO SETTINGS</string>
     <string name="pick_image_error">Please select an image</string>
+    <string name="no_items_available">Dishes list is empty</string>
 
     <string-array name="dishTypes">
         <item>breakfast</item>
