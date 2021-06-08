@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
 
         <item name="TextColor">@color/black</item>
-        <item name="VectorColor">@color/purple_500</item>
+        <item name="VectorColor">@color/black</item>
         <item name="BackgroundColor">@color/white</item>
     </style>
 
