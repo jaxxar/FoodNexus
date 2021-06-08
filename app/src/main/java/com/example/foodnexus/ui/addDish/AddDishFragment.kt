@@ -20,7 +20,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -32,9 +32,11 @@ import com.example.foodnexus.R
 import com.example.foodnexus.databinding.DialogListBinding
 import com.example.foodnexus.databinding.DialogSelectImageBinding
 import com.example.foodnexus.databinding.FragmentAddDishBinding
+import com.example.foodnexus.model.DishesData
 import com.example.foodnexus.ui.adapters.ListItemAdapter
 import com.example.foodnexus.ui.adapters.SelectorCallback
 import com.example.foodnexus.utils.Constants
+import com.example.foodnexus.utils.Constants.DISH_IMAGE_SOURCE_LOCAL
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -55,7 +57,7 @@ import java.util.*
 class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
 
     private lateinit var binding: FragmentAddDishBinding
-    private lateinit var viewModel: AddDishViewModel
+    private val viewModel: AddDishViewModel by viewModels()
     private lateinit var mDialog: Dialog
     private var imagePath = ""
 
@@ -65,7 +67,6 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddDishBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(this).get(AddDishViewModel::class.java)
         return binding.root
     }
 
@@ -78,6 +79,7 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
             }
             addDishButton.setOnClickListener {
                 if (validator()) {
+                    viewModel.insertDish(createDishData())
                     dismiss()
                 }
             }
@@ -151,6 +153,20 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
             return false
         }
         return true
+    }
+
+    private fun createDishData(): DishesData {
+        return DishesData(
+            imagePath,
+            DISH_IMAGE_SOURCE_LOCAL,
+            binding.textTitleEditText.text.toString(),
+            binding.textTypeEditText.text.toString(),
+            binding.textCategoryEditText.text.toString(),
+            binding.textIngredientsEditText.text.toString(),
+            binding.textTimeEditText.text.toString(),
+            binding.textDirectionsEditText.text.toString(),
+            false
+        )
     }
 
     private fun displaySelectImageDialog() {

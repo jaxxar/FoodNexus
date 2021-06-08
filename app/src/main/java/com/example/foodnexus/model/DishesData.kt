@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "dishes_table")
 data class DishesData(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "image") val image: String,
     @ColumnInfo(name = "image_source") val imageSource: String,
     @ColumnInfo(name = "title") val title: String,
@@ -15,5 +14,6 @@ data class DishesData(
     @ColumnInfo(name = "ingredients") val ingredients: String,
     @ColumnInfo(name = "cooking_time") val cookingTime: String,
     @ColumnInfo(name = "instructions") val directionsToCook: String,
-    @ColumnInfo(name = "favourite_dish") var favouriteDish: Boolean = false
+    @ColumnInfo(name = "favourite_dish") var favouriteDish: Boolean = false,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0
 )
