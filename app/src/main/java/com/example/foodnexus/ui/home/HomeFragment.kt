@@ -8,11 +8,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodnexus.R
 import com.example.foodnexus.databinding.FragmentAllDishesBinding
+import com.example.foodnexus.model.DishesData
 import com.example.foodnexus.ui.adapters.DishAdapter
+import com.example.foodnexus.ui.adapters.DishCallback
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), DishCallback {
 
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentAllDishesBinding
@@ -35,7 +37,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.dishesRecyclerview.layoutManager = GridLayoutManager(requireContext(), 2)
-        val dishAdapter = DishAdapter(this@HomeFragment)
+        val dishAdapter = DishAdapter(this@HomeFragment, this)
         binding.dishesRecyclerview.adapter = dishAdapter
         homeViewModel.allDishes.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
@@ -62,5 +64,10 @@ class HomeFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun returnDish(dish: DishesData) {
+        val action = HomeFragmentDirections.actionNavigationHomeToAddDishFragment(dish)
+        findNavController().navigate(action)
     }
 }

@@ -21,7 +21,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -57,6 +59,7 @@ import java.util.*
 class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
 
     private lateinit var binding: FragmentAddDishBinding
+    private val args: AddDishFragmentArgs by navArgs()
     private val viewModel: AddDishViewModel by viewModels()
     private lateinit var mDialog: Dialog
     private var imagePath = ""
@@ -76,12 +79,6 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
         binding.apply {
             addImage.setOnClickListener {
                 displaySelectImageDialog()
-            }
-            addDishButton.setOnClickListener {
-                if (validator()) {
-                    viewModel.insertDish(createDishData())
-                    dismiss()
-                }
             }
             textTypeEditText.setOnClickListener {
                 customListDialog(
@@ -103,6 +100,35 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
                     resources.getStringArray(R.array.dishCookTime).toList(),
                     Constants.DISH_COOKING_TIME
                 )
+            }
+            if (args.selectedDish != null) {
+                val circularProgressDrawable = CircularProgressDrawable(requireContext())
+                circularProgressDrawable.strokeWidth = 5f
+                circularProgressDrawable.centerRadius = 30f
+                circularProgressDrawable.start()
+                Glide.with(this@AddDishFragment)
+                    .load(args.selectedDish!!.image)
+                    .placeholder(circularProgressDrawable)
+                    .into(binding.image)
+                textTitleEditText.setText(args.selectedDish!!.title)
+                textTypeEditText.setText(args.selectedDish!!.type)
+                textCategoryEditText.setText(args.selectedDish!!.category)
+                textIngredientsEditText.setText(args.selectedDish!!.ingredients)
+                textTimeEditText.setText(args.selectedDish!!.cookingTime)
+                textDirectionsEditText.setText(args.selectedDish!!.directionsToCook)
+                imagePath = args.selectedDish!!.image
+
+                delete.visibility = View.VISIBLE
+                delete.setOnClickListener {
+                    viewModel.deleteDish(args.selectedDish!!.id)
+                    dismiss()
+                }
+            }
+            addDishButton.setOnClickListener {
+                if (validator()) {
+                    viewModel.insertDish(createDishData())
+                    dismiss()
+                }
             }
         }
     }
@@ -156,7 +182,7 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
     }
 
     private fun createDishData(): DishesData {
-        return DishesData(
+        if (args.selectedDish == null) return DishesData(
             imagePath,
             DISH_IMAGE_SOURCE_LOCAL,
             binding.textTitleEditText.text.toString(),
@@ -166,6 +192,18 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
             binding.textTimeEditText.text.toString(),
             binding.textDirectionsEditText.text.toString(),
             false
+        )
+        else return DishesData(
+            imagePath,
+            DISH_IMAGE_SOURCE_LOCAL,
+            binding.textTitleEditText.text.toString(),
+            binding.textTypeEditText.text.toString(),
+            binding.textCategoryEditText.text.toString(),
+            binding.textIngredientsEditText.text.toString(),
+            binding.textTimeEditText.text.toString(),
+            binding.textDirectionsEditText.text.toString(),
+            false,
+            args.selectedDish!!.id
         )
     }
 

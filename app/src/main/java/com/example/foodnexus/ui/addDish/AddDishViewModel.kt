@@ -18,4 +18,8 @@ class AddDishViewModel @Inject constructor(private val repository: DishRepositor
     fun insertDish(dish: DishesData) = viewModelScope.launch {
         repository.insertDishData(dish)
     }
+
+    fun deleteDish(id: Int) = viewModelScope.launch {
+        repository.deleteDishData(id)
+    }
 }

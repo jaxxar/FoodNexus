@@ -29,5 +29,11 @@
     <dialog
         android:id="@+id/addDishFragment"
         android:name="com.example.foodnexus.ui.addDish.AddDishFragment"
-        android:label="AddDishFragment" />
+        android:label="AddDishFragment">
+        <argument
+            android:name="selectedDish"
+            android:defaultValue="@null"
+            app:argType="com.example.foodnexus.model.DishesData"
+            app:nullable="true" />
+    </dialog>
 </navigation>

@@ -11,5 +11,10 @@ class DishRepository @Inject constructor(private val dishesDao: DishesDao) {
         dishesDao.insert(dishesData)
     }
 
+    @WorkerThread
+    suspend fun deleteDishData(id: Int) {
+        dishesDao.deleteAllQuestions(id)
+    }
+
     val allDishes: Flow<List<DishesData>> = dishesDao.getAllDishes()
 }

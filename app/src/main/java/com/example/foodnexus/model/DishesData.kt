@@ -1,9 +1,12 @@
 package com.example.foodnexus.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "dishes_table")
 data class DishesData(
     @ColumnInfo(name = "image") val image: String,
@@ -16,4 +19,4 @@ data class DishesData(
     @ColumnInfo(name = "instructions") val directionsToCook: String,
     @ColumnInfo(name = "favourite_dish") var favouriteDish: Boolean = false,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
-)
+) : Parcelable

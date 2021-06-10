@@ -11,12 +11,13 @@ import com.bumptech.glide.Glide
 import com.example.foodnexus.databinding.DesignDishItemBinding
 import com.example.foodnexus.model.DishesData
 
-class DishAdapter(private val fragment: Fragment) :
+class DishAdapter(private val fragment: Fragment, private val callback: DishCallback) :
     ListAdapter<DishesData, DishAdapter.ViewHolder>(DishDiffCallback()) {
 
     class ViewHolder(
         private val binding: DesignDishItemBinding,
-        private val fragment: Fragment
+        private val fragment: Fragment,
+        private val callback: DishCallback
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(dishesData: DishesData) {
             val circularProgressDrawable = CircularProgressDrawable(fragment.requireContext())
@@ -28,13 +29,18 @@ class DishAdapter(private val fragment: Fragment) :
                 .placeholder(circularProgressDrawable)
                 .into(binding.dishImage)
             binding.dishTitle.text = dishesData.title
+            binding.root.tag = dishesData.id
+
+            binding.root.setOnClickListener {
+                callback.returnDish(dishesData)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             DesignDishItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding, fragment)
+        return ViewHolder(binding, fragment, callback)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -54,4 +60,8 @@ class DishAdapter(private val fragment: Fragment) :
             newItem: DishesData
         ): Boolean = oldItem == newItem
     }
+}
+
+interface DishCallback {
+    fun returnDish(dish: DishesData)
 }

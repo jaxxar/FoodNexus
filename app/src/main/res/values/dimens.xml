@@ -14,5 +14,6 @@
     <dimen name="box_corner_radius">7dp</dimen>
     <dimen name="box_stroke_width">2dp</dimen>
     <dimen name="layout_marginHorizontal">50dp</dimen>
+    <dimen name="add_dish_edittext_vertical_margin">3dp</dimen>
 
 </resources>
