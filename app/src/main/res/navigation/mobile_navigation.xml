@@ -13,6 +13,13 @@
         <action
             android:id="@+id/action_navigation_home_to_addDishFragment"
             app:destination="@id/addDishFragment" />
+        <action
+            android:id="@+id/action_navigation_all_dishes_to_dishDetailsFragment"
+            app:destination="@id/dishDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -29,11 +36,21 @@
     <dialog
         android:id="@+id/addDishFragment"
         android:name="com.example.foodnexus.ui.addDish.AddDishFragment"
-        android:label="AddDishFragment">
+        android:label="AddDishFragment"
+        tools:layout="@layout/fragment_add_dish">
         <argument
             android:name="selectedDish"
             android:defaultValue="@null"
             app:argType="com.example.foodnexus.model.DishesData"
             app:nullable="true" />
     </dialog>
+    <fragment
+        android:id="@+id/dishDetailsFragment"
+        android:name="com.example.foodnexus.ui.dishDetails.DishDetailsFragment"
+        android:label="@string/title_details_dish"
+        tools:layout="@layout/fragment_dish_details">
+        <argument
+            android:name="selectedDish"
+            app:argType="com.example.foodnexus.model.DishesData" />
+    </fragment>
 </navigation>

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.foodnexus.MainActivity
 import com.example.foodnexus.R
 import com.example.foodnexus.databinding.FragmentAllDishesBinding
 import com.example.foodnexus.model.DishesData
@@ -66,8 +67,24 @@ class HomeFragment : Fragment(), DishCallback {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun returnDish(dish: DishesData) {
+    override fun returnEditDish(dish: DishesData) {
         val action = HomeFragmentDirections.actionNavigationHomeToAddDishFragment(dish)
         findNavController().navigate(action)
+    }
+
+    override fun returnDetailsDish(dish: DishesData) {
+        val action = HomeFragmentDirections.actionNavigationAllDishesToDishDetailsFragment(dish)
+        findNavController().navigate(action)
+
+        if (requireActivity() is MainActivity) {
+            (activity as MainActivity).hideBottomNav()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (requireActivity() is MainActivity) {
+            (activity as MainActivity).showBottomNav()
+        }
     }
 }

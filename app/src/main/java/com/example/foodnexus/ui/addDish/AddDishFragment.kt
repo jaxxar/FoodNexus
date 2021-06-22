@@ -109,7 +109,7 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
                 Glide.with(this@AddDishFragment)
                     .load(args.selectedDish!!.image)
                     .placeholder(circularProgressDrawable)
-                    .into(binding.image)
+                    .into(image)
                 textTitleEditText.setText(args.selectedDish!!.title)
                 textTypeEditText.setText(args.selectedDish!!.type)
                 textCategoryEditText.setText(args.selectedDish!!.category)

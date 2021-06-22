@@ -32,7 +32,10 @@ class DishAdapter(private val fragment: Fragment, private val callback: DishCall
             binding.root.tag = dishesData.id
 
             binding.editImage.setOnClickListener {
-                callback.returnDish(dishesData)
+                callback.returnEditDish(dishesData)
+            }
+            binding.dishImage.setOnClickListener {
+                callback.returnDetailsDish(dishesData)
             }
         }
     }
@@ -63,5 +66,6 @@ class DishAdapter(private val fragment: Fragment, private val callback: DishCall
 }
 
 interface DishCallback {
-    fun returnDish(dish: DishesData)
+    fun returnEditDish(dish: DishesData)
+    fun returnDetailsDish(dish: DishesData)
 }
