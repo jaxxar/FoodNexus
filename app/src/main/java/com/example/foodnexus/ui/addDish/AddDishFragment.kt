@@ -117,6 +117,7 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
                 textTimeEditText.setText(args.selectedDish!!.cookingTime)
                 textDirectionsEditText.setText(args.selectedDish!!.directionsToCook)
                 imagePath = args.selectedDish!!.image
+                addDishButton.text = resources.getString(R.string.title_update_dish)
 
                 delete.visibility = View.VISIBLE
                 delete.setOnClickListener {
