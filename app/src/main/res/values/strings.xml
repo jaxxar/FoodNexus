@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Food Nexus</string>
     <string name="title_all_dishes">All dishes</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
     <string name="title_add_dish">Add dish</string>
     <string name="title_update_dish">Update dish</string>
     <string name="please_fill_this_field">Please fill this field</string>
