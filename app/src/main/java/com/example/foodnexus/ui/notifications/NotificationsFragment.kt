@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.foodnexus.databinding.FragmentNotificationsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +23,7 @@ class NotificationsFragment : Fragment() {
         binding = FragmentNotificationsBinding.inflate(inflater)
         notificationsViewModel =
             ViewModelProvider(this).get(NotificationsViewModel::class.java)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
+        notificationsViewModel.text.observe(viewLifecycleOwner, {
             binding.textNotifications.text = it
         })
         return binding.root

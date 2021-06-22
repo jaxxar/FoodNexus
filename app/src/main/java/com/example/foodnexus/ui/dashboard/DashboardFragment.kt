@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.foodnexus.databinding.FragmentDashboardBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +23,7 @@ class DashboardFragment : Fragment() {
         binding = FragmentDashboardBinding.inflate(inflater)
         dashboardViewModel =
             ViewModelProvider(this).get(DashboardViewModel::class.java)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        dashboardViewModel.text.observe(viewLifecycleOwner, {
             binding.textDashboard.text = it
         })
         return binding.root
