@@ -31,7 +31,7 @@ class DishAdapter(private val fragment: Fragment, private val callback: DishCall
             binding.dishTitle.text = dishesData.title
             binding.root.tag = dishesData.id
 
-            binding.root.setOnClickListener {
+            binding.editImage.setOnClickListener {
                 callback.returnDish(dishesData)
             }
         }
