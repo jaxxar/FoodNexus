@@ -97,7 +97,6 @@ class DishDetailsFragment : Fragment() {
                                 val intColor =
                                     palette?.lightVibrantSwatch?.rgb
                                         ?: palette?.lightMutedSwatch?.rgb
-                                        ?: palette?.dominantSwatch?.rgb
                                         ?: 0
                                 detailsScrollView.setBackgroundColor(intColor)
                             }

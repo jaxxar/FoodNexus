@@ -50,7 +50,8 @@
     </string-array>
 
     <string-array name="dishCookTime">
-        <item>less than 10</item>
+        <item>5</item>
+        <item>10</item>
         <item>15</item>
         <item>20</item>
         <item>30</item>
@@ -60,7 +61,7 @@
         <item>90</item>
         <item>120</item>
         <item>150</item>
-        <item>more than 180</item>
+        <item>180</item>
     </string-array>
 
 </resources>

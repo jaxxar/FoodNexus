@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodnexus.MainActivity
-import com.example.foodnexus.databinding.FragmentDashboardBinding
+import com.example.foodnexus.databinding.FragmentFiltersBinding
 import com.example.foodnexus.model.DishesData
 import com.example.foodnexus.ui.adapters.DishAdapter
 import com.example.foodnexus.ui.adapters.DishCallback
@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FiltersFragment : Fragment(), DishCallback {
 
     private val filtersViewModel: FiltersViewModel by viewModels()
-    private lateinit var binding: FragmentDashboardBinding
+    private lateinit var binding: FragmentFiltersBinding
     private lateinit var dishAdapter: DishAdapter
 
     override fun onCreateView(
@@ -27,7 +27,7 @@ class FiltersFragment : Fragment(), DishCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDashboardBinding.inflate(inflater)
+        binding = FragmentFiltersBinding.inflate(inflater)
         return binding.root
     }
 
@@ -117,7 +117,7 @@ class FiltersFragment : Fragment(), DishCallback {
 
     override fun returnDetailsDish(dish: DishesData) {
         val action =
-            FiltersFragmentDirections.actionNavigationDashboardToDishDetailsFragment(dish)
+            FiltersFragmentDirections.actionNavigationFiltersToDishDetailsFragment(dish)
         findNavController().navigate(action)
 
         if (requireActivity() is MainActivity) {

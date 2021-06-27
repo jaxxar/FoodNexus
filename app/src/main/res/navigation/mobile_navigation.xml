@@ -23,12 +23,12 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_filters"
         android:name="com.example.foodnexus.ui.filters.FiltersFragment"
         android:label="@string/title_filters"
-        tools:layout="@layout/fragment_dashboard">
+        tools:layout="@layout/fragment_filters">
         <action
-            android:id="@+id/action_navigation_dashboard_to_dishDetailsFragment"
+            android:id="@+id/action_navigation_filters_to_dishDetailsFragment"
             app:destination="@id/dishDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
