@@ -1,4 +1,4 @@
-package com.example.foodnexus.ui.dashboard
+package com.example.foodnexus.ui.filters
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(repository: DishRepository) : ViewModel() {
+class FiltersViewModel @Inject constructor(repository: DishRepository) : ViewModel() {
 
     val favouriteDishes = repository.favouriteDishes.asLiveData()
     val quickDishes = repository.quickDishes.asLiveData()

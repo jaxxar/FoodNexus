@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.foodnexus.ui.dashboard.DashboardFragment"
+        android:name="com.example.foodnexus.ui.filters.FiltersFragment"
         android:label="@string/title_filters"
         tools:layout="@layout/fragment_dashboard">
         <action
