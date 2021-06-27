@@ -39,7 +39,7 @@
             android:id="@+id/edit_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit"
+            android:src="@drawable/ic_more"
             app:layout_constraintBottom_toBottomOf="@+id/dish_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/dish_title" />

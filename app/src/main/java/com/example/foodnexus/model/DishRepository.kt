@@ -13,7 +13,7 @@ class DishRepository @Inject constructor(private val dishesDao: DishesDao) {
 
     @WorkerThread
     suspend fun deleteDishData(id: Int) {
-        dishesDao.deleteAllQuestions(id)
+        dishesDao.deleteDish(id)
     }
 
     @WorkerThread

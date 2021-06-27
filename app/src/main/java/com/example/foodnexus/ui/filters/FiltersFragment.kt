@@ -115,6 +115,10 @@ class FiltersFragment : Fragment(), DishCallback {
         //Not applicable
     }
 
+    override fun returnDeleteDish(id: Int) {
+        //Not applicable
+    }
+
     override fun returnDetailsDish(dish: DishesData) {
         val action =
             FiltersFragmentDirections.actionNavigationFiltersToDishDetailsFragment(dish)

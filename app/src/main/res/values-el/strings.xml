@@ -4,7 +4,8 @@
     <string name="title_all_dishes">Όλα τα πιάτα</string>
     <string name="title_filters">Φίλτρα</string>
     <string name="title_add_dish">Πρόσθεσε πιάτο</string>
-    <string name="title_update_dish">Ενημέρωσε πιάτο</string>
+    <string name="title_edit_dish">Ενημέρωσε πιάτο</string>
+    <string name="title_delete_dish">Διαγραφή πιάτου</string>
     <string name="title_details_dish">Λεπτομέριες πιάτου</string>
     <string name="please_fill_this_field">Παρακαλώ συμπλήρωσε αυτό το πεδίο</string>
     <string name="cancel">Άκυρο</string>

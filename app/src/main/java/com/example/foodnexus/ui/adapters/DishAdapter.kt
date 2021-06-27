@@ -3,12 +3,14 @@ package com.example.foodnexus.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.example.foodnexus.R
 import com.example.foodnexus.databinding.DesignDishItemBinding
 import com.example.foodnexus.model.DishesData
 
@@ -40,7 +42,20 @@ class DishAdapter(
             if (showEdit) {
                 binding.editImage.visibility = View.VISIBLE
                 binding.editImage.setOnClickListener {
-                    callback.returnEditDish(dishesData)
+                    val popUp = PopupMenu(fragment.context, binding.editImage)
+                    popUp.menuInflater.inflate(R.menu.dish_options_menu, popUp.menu)
+                    popUp.setOnMenuItemClickListener {
+                        when (it.itemId) {
+                            R.id.action_edit_dish -> {
+                                callback.returnEditDish(dishesData)
+                            }
+                            R.id.action_delete_dish -> {
+                                callback.returnDeleteDish(dishesData.id)
+                            }
+                        }
+                        true
+                    }
+                    popUp.show()
                 }
             } else {
                 binding.editImage.visibility = View.GONE
@@ -78,5 +93,6 @@ class DishAdapter(
 
 interface DishCallback {
     fun returnEditDish(dish: DishesData)
+    fun returnDeleteDish(id: Int)
     fun returnDetailsDish(dish: DishesData)
 }

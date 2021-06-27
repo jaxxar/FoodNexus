@@ -72,6 +72,10 @@ class HomeFragment : Fragment(), DishCallback {
         findNavController().navigate(action)
     }
 
+    override fun returnDeleteDish(id: Int) {
+        homeViewModel.deleteDish(id)
+    }
+
     override fun returnDetailsDish(dish: DishesData) {
         val action = HomeFragmentDirections.actionNavigationAllDishesToDishDetailsFragment(dish)
         findNavController().navigate(action)
