@@ -53,6 +53,7 @@ dependencies {
     implementation "com.karumi:dexter:$dexterVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayoutVersion"
+    implementation "androidx.palette:palette-ktx:$paletteVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$testExtJunitVersion"

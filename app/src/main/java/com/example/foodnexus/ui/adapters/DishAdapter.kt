@@ -1,6 +1,7 @@
 package com.example.foodnexus.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
@@ -11,11 +12,16 @@ import com.bumptech.glide.Glide
 import com.example.foodnexus.databinding.DesignDishItemBinding
 import com.example.foodnexus.model.DishesData
 
-class DishAdapter(private val fragment: Fragment, private val callback: DishCallback) :
+class DishAdapter(
+    private val fragment: Fragment,
+    private val callback: DishCallback,
+    private val showEdit: Boolean
+) :
     ListAdapter<DishesData, DishAdapter.ViewHolder>(DishDiffCallback()) {
 
     class ViewHolder(
         private val binding: DesignDishItemBinding,
+        private val showEdit: Boolean,
         private val fragment: Fragment,
         private val callback: DishCallback
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -31,8 +37,13 @@ class DishAdapter(private val fragment: Fragment, private val callback: DishCall
             binding.dishTitle.text = dishesData.title
             binding.root.tag = dishesData.id
 
-            binding.editImage.setOnClickListener {
-                callback.returnEditDish(dishesData)
+            if (showEdit) {
+                binding.editImage.visibility = View.VISIBLE
+                binding.editImage.setOnClickListener {
+                    callback.returnEditDish(dishesData)
+                }
+            } else {
+                binding.editImage.visibility = View.GONE
             }
             binding.dishImage.setOnClickListener {
                 callback.returnDetailsDish(dishesData)
@@ -43,7 +54,7 @@ class DishAdapter(private val fragment: Fragment, private val callback: DishCall
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             DesignDishItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding, fragment, callback)
+        return ViewHolder(binding, showEdit, fragment, callback)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

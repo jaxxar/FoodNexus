@@ -38,7 +38,7 @@ class HomeFragment : Fragment(), DishCallback {
         super.onViewCreated(view, savedInstanceState)
 
         binding.dishesRecyclerview.layoutManager = GridLayoutManager(requireContext(), 2)
-        val dishAdapter = DishAdapter(this@HomeFragment, this)
+        val dishAdapter = DishAdapter(this@HomeFragment, this, true)
         binding.dishesRecyclerview.adapter = dishAdapter
         homeViewModel.allDishes.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {

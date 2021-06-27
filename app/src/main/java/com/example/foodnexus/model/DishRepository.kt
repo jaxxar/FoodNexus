@@ -16,5 +16,15 @@ class DishRepository @Inject constructor(private val dishesDao: DishesDao) {
         dishesDao.deleteAllQuestions(id)
     }
 
+    @WorkerThread
+    suspend fun updateDishData(dishesData: DishesData) {
+        dishesDao.updateDish(dishesData)
+    }
+
     val allDishes: Flow<List<DishesData>> = dishesDao.getAllDishes()
+    val favouriteDishes: Flow<List<DishesData>> = dishesDao.getFavoriteDishes()
+    val quickDishes: Flow<List<DishesData>> = dishesDao.getQuickDishes()
+    val easyDishes: Flow<List<DishesData>> = dishesDao.getEasyDishes()
+    val mediumDishes: Flow<List<DishesData>> = dishesDao.getMediumDishes()
+    val hardDishes: Flow<List<DishesData>> = dishesDao.getHardDishes()
 }

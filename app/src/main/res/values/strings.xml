@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Food Nexus</string>
     <string name="title_all_dishes">All dishes</string>
-    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_filters">Filters</string>
     <string name="title_notifications" translatable="false">Notifications</string>
     <string name="title_add_dish">Add dish</string>
     <string name="title_update_dish">Update dish</string>
@@ -11,7 +11,7 @@
 
     <!--add/edit dish-->
     <string name="title">Title</string>
-    <string name="type">Type</string>
+    <string name="difficulty">Difficulty</string>
     <string name="category">Category</string>
     <string name="ingredients">Ingredients</string>
     <string name="cook_time">Cooking Time In Minutes</string>
@@ -25,6 +25,13 @@
     <string name="pick_image_error">Please select an image</string>
     <string name="no_items_available">Dishes list is empty</string>
 
+    <!--chips-->
+    <string name="chip_favourites">favourites</string>
+    <string name="chip_fast">fast</string>
+    <string name="chip_easy">easy</string>
+    <string name="chip_medium">medium</string>
+    <string name="chip_hard">hard</string>
+
     <string-array name="dishTypes">
         <item>breakfast</item>
         <item>lunch</item>
@@ -36,20 +43,10 @@
         <item>other</item>
     </string-array>
 
-    <string-array name="dishCategories">
-        <item>Pizza</item>
-        <item>BBQ</item>
-        <item>Bakery</item>
-        <item>Burger</item>
-        <item>Cafe</item>
-        <item>Chicken</item>
-        <item>Dessert</item>
-        <item>Drinks</item>
-        <item>Hot Dogs</item>
-        <item>Juices</item>
-        <item>Sandwich</item>
-        <item>Tea &amp; Coffee</item>
-        <item>Other</item>
+    <string-array name="dishDifficulty">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
     </string-array>
 
     <string-array name="dishCookTime">

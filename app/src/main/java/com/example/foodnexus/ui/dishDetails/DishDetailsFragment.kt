@@ -1,14 +1,21 @@
 package com.example.foodnexus.ui.dishDetails
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.palette.graphics.Palette
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.foodnexus.R
 import com.example.foodnexus.databinding.FragmentDishDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,28 +57,56 @@ class DishDetailsFragment : Fragment() {
                     .into(favouriteImage)
             }
             favouriteImage.setOnClickListener {
+                args.selectedDish.favouriteDish = !args.selectedDish.favouriteDish
+                viewModel.favouriteDish(args.selectedDish)
                 if (args.selectedDish.favouriteDish) {
-                    args.selectedDish.favouriteDish = false
-                    viewModel.favouriteDish(args.selectedDish)
                     Glide.with(this@DishDetailsFragment)
-                        .load(R.drawable.ic_favorite_border)
+                        .load(R.drawable.ic_favorite)
                         .placeholder(circularProgressDrawable)
                         .into(favouriteImage)
                 } else {
-                    args.selectedDish.favouriteDish = true
-                    viewModel.favouriteDish(args.selectedDish)
                     Glide.with(this@DishDetailsFragment)
-                        .load(R.drawable.ic_favorite)
+                        .load(R.drawable.ic_favorite_border)
                         .placeholder(circularProgressDrawable)
                         .into(favouriteImage)
                 }
             }
             Glide.with(this@DishDetailsFragment)
                 .load(args.selectedDish.image)
+                .centerCrop()
                 .placeholder(circularProgressDrawable)
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        return false
+                    }
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+                        resource?.let {
+                            Palette.from(it.toBitmap()).generate { palette ->
+                                val intColor =
+                                    palette?.lightVibrantSwatch?.rgb ?: palette?.dominantSwatch?.rgb
+                                    ?: 0
+                                detailsScrollView.setBackgroundColor(intColor)
+                            }
+                        }
+                        return false
+                    }
+
+                })
                 .into(image)
             textTitleEditText.setText(args.selectedDish.title)
-            textTypeEditText.setText(args.selectedDish.type)
+            textDifficultyEditText.setText(args.selectedDish.difficulty)
             textCategoryEditText.setText(args.selectedDish.category)
             textIngredientsEditText.setText(args.selectedDish.ingredients)
             textTimeEditText.setText(args.selectedDish.cookingTime)

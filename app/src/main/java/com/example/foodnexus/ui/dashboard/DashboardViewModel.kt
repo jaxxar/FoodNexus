@@ -1,13 +1,18 @@
 package com.example.foodnexus.ui.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.example.foodnexus.model.DishRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DashboardViewModel : ViewModel() {
+@HiltViewModel
+class DashboardViewModel @Inject constructor(repository: DishRepository) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+    val favouriteDishes = repository.favouriteDishes.asLiveData()
+    val quickDishes = repository.quickDishes.asLiveData()
+    val easyDishes = repository.easyDishes.asLiveData()
+    val mediumDishes = repository.mediumDishes.asLiveData()
+    val hardDishes = repository.hardDishes.asLiveData()
+
 }

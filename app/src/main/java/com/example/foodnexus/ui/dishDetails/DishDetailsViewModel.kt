@@ -13,7 +13,7 @@ class DishDetailsViewModel @Inject constructor(private val repository: DishRepos
     ViewModel() {
 
     fun favouriteDish(dish: DishesData) = viewModelScope.launch {
-        repository.insertDishData(dish)
+        repository.updateDishData(dish)
     }
 
 }

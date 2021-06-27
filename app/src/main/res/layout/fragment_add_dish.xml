@@ -63,18 +63,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_type"
+        android:id="@+id/text_category"
         style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
-        android:hint="@string/type"
+        android:hint="@string/category"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/text_type_edit_text"
+            android:id="@+id/text_category_edit_text"
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,18 +87,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_category"
+        android:id="@+id/text_difficulty"
         style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
-        android:hint="@string/category"
+        android:hint="@string/difficulty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_type">
+        app:layout_constraintTop_toBottomOf="@+id/text_category">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/text_category_edit_text"
+            android:id="@+id/text_difficulty_edit_text"
             style="@style/TextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
         android:hint="@string/ingredients"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_category">
+        app:layout_constraintTop_toBottomOf="@+id/text_difficulty">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_ingredients_edit_text"

@@ -80,17 +80,17 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
             addImage.setOnClickListener {
                 displaySelectImageDialog()
             }
-            textTypeEditText.setOnClickListener {
+            textDifficultyEditText.setOnClickListener {
                 customListDialog(
-                    getString(R.string.type),
-                    resources.getStringArray(R.array.dishTypes).toList(),
+                    getString(R.string.difficulty),
+                    resources.getStringArray(R.array.dishDifficulty).toList(),
                     Constants.DISH_TYPE
                 )
             }
             textCategoryEditText.setOnClickListener {
                 customListDialog(
                     getString(R.string.category),
-                    resources.getStringArray(R.array.dishCategories).toList(),
+                    resources.getStringArray(R.array.dishTypes).toList(),
                     Constants.DISH_CATEGORY
                 )
             }
@@ -111,7 +111,7 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
                     .placeholder(circularProgressDrawable)
                     .into(image)
                 textTitleEditText.setText(args.selectedDish!!.title)
-                textTypeEditText.setText(args.selectedDish!!.type)
+                textDifficultyEditText.setText(args.selectedDish!!.difficulty)
                 textCategoryEditText.setText(args.selectedDish!!.category)
                 textIngredientsEditText.setText(args.selectedDish!!.ingredients)
                 textTimeEditText.setText(args.selectedDish!!.cookingTime)
@@ -141,11 +141,11 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
         } else {
             binding.textTitle.error = null
         }
-        if (viewModel.isDataNotFilled(binding.textTypeEditText.text.toString())) {
-            binding.textType.error = getString(R.string.please_fill_this_field)
+        if (viewModel.isDataNotFilled(binding.textDifficultyEditText.text.toString())) {
+            binding.textDifficulty.error = getString(R.string.please_fill_this_field)
             return false
         } else {
-            binding.textType.error = null
+            binding.textDifficulty.error = null
         }
         if (viewModel.isDataNotFilled(binding.textCategoryEditText.text.toString())) {
             binding.textCategory.error = getString(R.string.please_fill_this_field)
@@ -187,7 +187,7 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
             imagePath,
             DISH_IMAGE_SOURCE_LOCAL,
             binding.textTitleEditText.text.toString(),
-            binding.textTypeEditText.text.toString(),
+            binding.textDifficultyEditText.text.toString(),
             binding.textCategoryEditText.text.toString(),
             binding.textIngredientsEditText.text.toString(),
             binding.textTimeEditText.text.toString(),
@@ -198,7 +198,7 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
             imagePath,
             DISH_IMAGE_SOURCE_LOCAL,
             binding.textTitleEditText.text.toString(),
-            binding.textTypeEditText.text.toString(),
+            binding.textDifficultyEditText.text.toString(),
             binding.textCategoryEditText.text.toString(),
             binding.textIngredientsEditText.text.toString(),
             binding.textTimeEditText.text.toString(),
@@ -375,7 +375,7 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
     override fun returnSelection(selection: String, category: String) {
         when (category) {
             Constants.DISH_TYPE -> {
-                binding.textTypeEditText.setText(selection)
+                binding.textDifficultyEditText.setText(selection)
                 mDialog.dismiss()
             }
             Constants.DISH_CATEGORY -> {
