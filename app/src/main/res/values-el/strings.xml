@@ -23,6 +23,7 @@
     <string name="go_to_settings">Ρυθμίσεις</string>
     <string name="select_image_action">Επέλεξε εικόνα</string>
     <string name="go_to_settings_dialog">Ανενεργή λειτουργία. Ενεργοποίηση από τις ρυθμίσεις</string>
+    <string name="msg_delete_dish">Θέλετε σίγουρα να διαγράψετε το %1$s;</string>
 
     <string-array name="dishTypes">
         <item>breakfast</item>
@@ -60,4 +61,6 @@
     <string name="chip_easy">εύκολο</string>
     <string name="chip_medium">μέτριο</string>
     <string name="chip_hard">δύσκολο</string>
+    <string name="ans_yes">Ναι</string>
+    <string name="ans_no">Όχι</string>
 </resources>

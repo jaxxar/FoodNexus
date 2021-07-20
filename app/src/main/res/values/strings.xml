@@ -8,6 +8,8 @@
     <string name="title_delete_dish">Delete dish</string>
     <string name="title_details_dish">Dish Details</string>
     <string name="please_fill_this_field">Please fill this field</string>
+    <string name="ans_yes">Yes</string>
+    <string name="ans_no">No</string>
     <string name="cancel">Cancel</string>
 
     <!--add/edit dish-->
@@ -25,6 +27,9 @@
     <string name="go_to_settings">GO TO SETTINGS</string>
     <string name="pick_image_error">Please select an image</string>
     <string name="no_items_available">Dishes list is empty</string>
+
+    <!--delete dish-->
+    <string name="msg_delete_dish">Are you sure you want to delete %1$s?</string>
 
     <!--chips-->
     <string name="chip_favourites">favourites</string>

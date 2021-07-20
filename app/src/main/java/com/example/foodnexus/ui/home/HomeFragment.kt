@@ -1,5 +1,6 @@
 package com.example.foodnexus.ui.home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -73,7 +74,21 @@ class HomeFragment : Fragment(), DishCallback {
     }
 
     override fun returnDeleteDish(dish: DishesData) {
-        homeViewModel.deleteDish(dish)
+        val builder = AlertDialog.Builder(requireActivity())
+        builder.setTitle(resources.getString(R.string.title_delete_dish))
+        builder.setMessage(resources.getString(R.string.msg_delete_dish, dish.title))
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+        builder.setPositiveButton(resources.getString(R.string.ans_yes)) { dialogInterface, _ ->
+            homeViewModel.deleteDish(dish)
+            dialogInterface.dismiss()
+        }
+        builder.setNegativeButton(resources.getString(R.string.ans_no)) { dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
+
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
 
     override fun returnDetailsDish(dish: DishesData) {

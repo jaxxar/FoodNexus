@@ -121,8 +121,27 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
 
                 delete.visibility = View.VISIBLE
                 delete.setOnClickListener {
-                    viewModel.deleteDish(args.selectedDish!!)
-                    dismiss()
+                    val builder = AlertDialog.Builder(requireActivity())
+                    builder.setTitle(resources.getString(R.string.title_delete_dish))
+                    builder.setMessage(
+                        resources.getString(
+                            R.string.msg_delete_dish,
+                            args.selectedDish!!.title
+                        )
+                    )
+                    builder.setIcon(android.R.drawable.ic_dialog_alert)
+                    builder.setPositiveButton(resources.getString(R.string.ans_yes)) { dialogInterface, _ ->
+                        viewModel.deleteDish(args.selectedDish!!)
+                        dialogInterface.dismiss()
+                        dismiss()
+                    }
+                    builder.setNegativeButton(resources.getString(R.string.ans_no)) { dialogInterface, _ ->
+                        dialogInterface.dismiss()
+                    }
+
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
                 }
             }
             addDishButton.setOnClickListener {
