@@ -50,7 +50,7 @@ class DishAdapter(
                                 callback.returnEditDish(dishesData)
                             }
                             R.id.action_delete_dish -> {
-                                callback.returnDeleteDish(dishesData.id)
+                                callback.returnDeleteDish(dishesData)
                             }
                         }
                         true
@@ -93,6 +93,6 @@ class DishAdapter(
 
 interface DishCallback {
     fun returnEditDish(dish: DishesData)
-    fun returnDeleteDish(id: Int)
+    fun returnDeleteDish(dish: DishesData)
     fun returnDetailsDish(dish: DishesData)
 }

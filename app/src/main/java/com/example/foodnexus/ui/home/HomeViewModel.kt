@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.foodnexus.model.DishRepository
+import com.example.foodnexus.model.DishesData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,8 +14,8 @@ class HomeViewModel @Inject constructor(private val repository: DishRepository) 
 
     val allDishes = repository.allDishes.asLiveData()
 
-    fun deleteDish(id: Int) = viewModelScope.launch {
-        repository.deleteDishData(id)
+    fun deleteDish(dish: DishesData) = viewModelScope.launch {
+        repository.deleteDishData(dish)
     }
 
 }

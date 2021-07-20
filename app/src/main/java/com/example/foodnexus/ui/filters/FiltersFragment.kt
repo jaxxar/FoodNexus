@@ -115,7 +115,7 @@ class FiltersFragment : Fragment(), DishCallback {
         //Not applicable
     }
 
-    override fun returnDeleteDish(id: Int) {
+    override fun returnDeleteDish(dish: DishesData) {
         //Not applicable
     }
 

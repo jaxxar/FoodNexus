@@ -33,7 +33,7 @@ interface DishesDao {
     @Update
     suspend fun updateDish(dish: DishesData)
 
-    @Query("DELETE FROM dishes_table WHERE id = :selectedId")
-    suspend fun deleteDish(selectedId: Int)
+    @Delete
+    suspend fun deleteDish(selectedId: DishesData)
 
 }

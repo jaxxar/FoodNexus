@@ -72,8 +72,8 @@ class HomeFragment : Fragment(), DishCallback {
         findNavController().navigate(action)
     }
 
-    override fun returnDeleteDish(id: Int) {
-        homeViewModel.deleteDish(id)
+    override fun returnDeleteDish(dish: DishesData) {
+        homeViewModel.deleteDish(dish)
     }
 
     override fun returnDetailsDish(dish: DishesData) {

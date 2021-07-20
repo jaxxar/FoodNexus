@@ -121,7 +121,7 @@ class AddDishFragment : BottomSheetDialogFragment(), SelectorCallback {
 
                 delete.visibility = View.VISIBLE
                 delete.setOnClickListener {
-                    viewModel.deleteDish(args.selectedDish!!.id)
+                    viewModel.deleteDish(args.selectedDish!!)
                     dismiss()
                 }
             }
