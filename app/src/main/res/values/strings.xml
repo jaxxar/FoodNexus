@@ -2,7 +2,7 @@
     <string name="app_name">Food Nexus</string>
     <string name="title_all_dishes">All dishes</string>
     <string name="title_filters">Filters</string>
-    <string name="title_notifications" translatable="false">Notifications</string>
+    <string name="title_random_dish">Random Dish</string>
     <string name="title_add_dish">Add dish</string>
     <string name="title_edit_dish">Edit dish</string>
     <string name="title_delete_dish">Delete dish</string>

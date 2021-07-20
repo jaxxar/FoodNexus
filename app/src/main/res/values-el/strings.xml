@@ -3,6 +3,7 @@
     <string name="app_name">Food Nexus</string>
     <string name="title_all_dishes">Όλα τα πιάτα</string>
     <string name="title_filters">Φίλτρα</string>
+    <string name="title_random_dish">Τυχαίο πιάτο</string>
     <string name="title_add_dish">Πρόσθεσε πιάτο</string>
     <string name="title_edit_dish">Ενημέρωσε πιάτο</string>
     <string name="title_delete_dish">Διαγραφή πιάτου</string>

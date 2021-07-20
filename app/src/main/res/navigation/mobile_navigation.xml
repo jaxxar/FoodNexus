@@ -38,9 +38,9 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.foodnexus.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.example.foodnexus.ui.notifications.RandomDishFragment"
+        android:label="@string/title_random_dish"
+        tools:layout="@layout/fragment_random_dish" />
     <dialog
         android:id="@+id/addDishFragment"
         android:name="com.example.foodnexus.ui.addDish.AddDishFragment"
