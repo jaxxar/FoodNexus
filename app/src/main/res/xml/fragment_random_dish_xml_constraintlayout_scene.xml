@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <KeyFrameSet></KeyFrameSet>
+        <OnSwipe />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start"></ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/image_frame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0.4"
+            motion:layout_constraintBottom_toBottomOf="@+id/text_title"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/text_summary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/motion_layout_marginStart"
+            android:layout_marginEnd="@dimen/motion_layout_marginEnd"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/text_title" />
+        <Constraint
+            android:id="@+id/cheap_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toEndOf="@+id/text_summary"
+            motion:layout_constraintTop_toTopOf="@+id/text_summary" />
+
+        <Constraint
+            android:id="@+id/vegetarian_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toEndOf="@+id/text_summary"
+            motion:layout_constraintTop_toBottomOf="@+id/cheap_checkbox" />
+
+        <Constraint
+            android:id="@+id/vegan_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toEndOf="@+id/text_summary"
+            motion:layout_constraintTop_toBottomOf="@+id/vegetarian_checkbox" />
+
+        <Constraint
+            android:id="@+id/healthy_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toEndOf="@+id/text_summary"
+            motion:layout_constraintTop_toBottomOf="@+id/vegan_checkbox" />
+        <Constraint
+            android:id="@+id/instructions_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/text_summary" />
+    </ConstraintSet>
+</MotionScene>

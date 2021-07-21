@@ -13,5 +13,5 @@ interface RandomDishAPI {
         @Query(Constants.API_KEY) apiKey: String,
         @Query(Constants.LIMIT_LICENCE) limitLicence: Boolean,
         @Query(Constants.NUMBER) number: Int
-    ): Single<RandomDishData.Recipe>
+    ): Single<RandomDishData.RandomDish>
 }

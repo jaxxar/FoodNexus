@@ -16,4 +16,8 @@
     <dimen name="layout_marginHorizontal">50dp</dimen>
     <dimen name="add_dish_edittext_vertical_margin">3dp</dimen>
 
+    <!-- MotionLayout   -->
+    <dimen name="motion_layout_marginEnd">120dp</dimen>
+    <dimen name="motion_layout_marginStart">5dp</dimen>
+
 </resources>

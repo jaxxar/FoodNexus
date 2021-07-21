@@ -23,6 +23,14 @@
         <item name="android:textColorHint">?attr/TextColor</item>
     </style>
 
+    <style name="TextStyleTitle" parent="TextStyle">
+        <item name="android:textSize">@dimen/text_size_header</item>
+    </style>
+
+    <style name="TextStyleSectionTitle" parent="TextStyle">
+        <item name="android:textSize">@dimen/text_size_section_titles</item>
+    </style>
+
     <style name="DialogBackgroundColor" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:background">?attr/BackgroundColor</item>
     </style>

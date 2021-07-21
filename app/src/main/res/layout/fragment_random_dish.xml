@@ -1,180 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/detailsScrollView"
+    android:id="@+id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.RandomDishFragment">
+    app:layoutDescription="@xml/fragment_random_dish_xml_constraintlayout_scene">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <FrameLayout
+        android:id="@+id/image_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/image_frame"
+        <ImageView
+            android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:background="@color/grey"
+            android:scaleType="fitXY" />
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/grey"
-                android:scaleType="fitXY" />
+    </FrameLayout>
 
-            <ImageButton
-                android:id="@+id/favourite_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:background="@android:color/transparent"
-                android:padding="15dp"
-                tools:src="@drawable/ic_favorite_border" />
-        </FrameLayout>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_title"
+        style="@style/TextStyleTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/layout_marginHorizontal"
+        android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_frame" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_title"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
-            android:hint="@string/title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_frame">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_summary"
+        style="@style/TextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/layout_marginHorizontal"
+        android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_title_edit_text"
-                style="@style/TextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:imeOptions="actionNext"
-                android:inputType="text" />
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/cheap_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="cheap"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_summary" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/vegetarian_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="vegetarian"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cheap_checkbox" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_difficulty"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
-            android:hint="@string/difficulty"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_title">
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/vegan_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="vegan"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vegetarian_checkbox" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_difficulty_edit_text"
-                style="@style/TextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:longClickable="false" />
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/healthy_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="healthy"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vegan_checkbox" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/instructions_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_category"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
-            android:hint="@string/category"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_difficulty">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_category_edit_text"
-                style="@style/TextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:longClickable="false" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_ingredients"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
-            android:hint="@string/ingredients"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_category">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_ingredients_edit_text"
-                style="@style/TextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:imeOptions="actionNext"
-                android:inputType="textMultiLine"
-                android:minLines="5" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_time"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
-            android:hint="@string/cook_time"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_ingredients">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_time_edit_text"
-                style="@style/TextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:imeOptions="actionNext"
-                android:inputType="number"
-                android:longClickable="false" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_directions"
-            style="@style/TextInputLayoutStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
-            android:hint="@string/directions"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_time">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_directions_edit_text"
-                style="@style/TextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:imeOptions="actionNext"
-                android:inputType="text" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.motion.widget.MotionLayout>

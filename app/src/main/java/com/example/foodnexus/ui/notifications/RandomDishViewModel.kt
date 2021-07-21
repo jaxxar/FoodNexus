@@ -20,7 +20,7 @@ class RandomDishViewModel @Inject constructor(private val repository: DishReposi
     private val compositeDisposable = CompositeDisposable()
 
     val loadRandomDish = MutableLiveData<Boolean>()
-    val randomDishResponse = MutableLiveData<RandomDishData.Recipe>()
+    val randomDishResponse = MutableLiveData<RandomDishData.RandomDish>()
     val randomDishLoadingError = MutableLiveData<Boolean>()
 
     fun getRandomDishFromAPI() {
@@ -30,8 +30,8 @@ class RandomDishViewModel @Inject constructor(private val repository: DishReposi
             randomDishApiService.getRandomDish()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<RandomDishData.Recipe>() {
-                    override fun onSuccess(dish: RandomDishData.Recipe) {
+                .subscribeWith(object : DisposableSingleObserver<RandomDishData.RandomDish>() {
+                    override fun onSuccess(dish: RandomDishData.RandomDish) {
                         loadRandomDish.value = false
                         randomDishResponse.value = dish
                         randomDishLoadingError.value = false
