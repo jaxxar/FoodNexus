@@ -65,6 +65,21 @@
             android:layout_height="wrap_content"
             motion:layout_constraintStart_toEndOf="@+id/text_summary"
             motion:layout_constraintTop_toBottomOf="@+id/vegan_checkbox" />
+
+        <Constraint
+            android:id="@+id/prep_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toEndOf="@+id/text_summary"
+            motion:layout_constraintTop_toBottomOf="@+id/healthy_checkbox" />
+
+        <Constraint
+            android:id="@+id/servings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toEndOf="@+id/text_summary"
+            motion:layout_constraintTop_toBottomOf="@+id/prep_time" />
+
         <Constraint
             android:id="@+id/instructions_recycler"
             android:layout_width="match_parent"

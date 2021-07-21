@@ -2,7 +2,9 @@ package com.example.foodnexus.ui.notifications
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.foodnexus.model.DishRepository
+import com.example.foodnexus.model.DishesData
 import com.example.foodnexus.model.RandomDishData
 import com.example.foodnexus.utils.network.RandomDishAPIService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,11 +12,16 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RandomDishViewModel @Inject constructor(private val repository: DishRepository) :
     ViewModel() {
+
+    fun insertDish(dish: DishesData) = viewModelScope.launch {
+        repository.insertDishData(dish)
+    }
 
     private val randomDishApiService = RandomDishAPIService()
     private val compositeDisposable = CompositeDisposable()

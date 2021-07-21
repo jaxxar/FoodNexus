@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
-        android:text="cheap"
+        android:text="@string/cheap_title"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_summary" />
 
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
-        android:text="vegetarian"
+        android:text="@string/vegetarian_title"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cheap_checkbox" />
 
@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
-        android:text="vegan"
+        android:text="@string/vegan_title"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vegetarian_checkbox" />
 
@@ -79,9 +79,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
-        android:text="healthy"
+        android:text="@string/healthy_title"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vegan_checkbox" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/prep_time"
+        style="@style/TextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/healthy_checkbox" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/servings"
+        style="@style/TextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/add_dish_edittext_vertical_margin"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prep_time" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/instructions_recycler"
@@ -90,5 +108,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent" />
+
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

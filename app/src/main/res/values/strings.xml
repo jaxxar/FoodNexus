@@ -6,6 +6,7 @@
     <string name="title_add_dish">Add dish</string>
     <string name="title_edit_dish">Edit dish</string>
     <string name="title_delete_dish">Delete dish</string>
+    <string name="title_save_dish">Save dish</string>
     <string name="title_details_dish">Dish Details</string>
     <string name="please_fill_this_field">Please fill this field</string>
     <string name="ans_yes">Yes</string>
@@ -30,6 +31,15 @@
 
     <!--delete dish-->
     <string name="msg_delete_dish">Are you sure you want to delete %1$s?</string>
+
+    <!--random dish-->
+    <string name="cheap_title" translatable="false">cheap</string>
+    <string name="vegetarian_title" translatable="false">vegetarian</string>
+    <string name="vegan_title" translatable="false">vegan</string>
+    <string name="healthy_title" translatable="false">healthy</string>
+    <string name="cook_time_title" translatable="false">cook time:\n %1$s</string>
+    <string name="servings_title" translatable="false">servings:\n %1$s</string>
+    <string name="save_error" translatable="false">Error upon save</string>
 
     <!--chips-->
     <string name="chip_favourites">favourites</string>

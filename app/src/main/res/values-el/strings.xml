@@ -64,4 +64,5 @@
     <string name="chip_hard">δύσκολο</string>
     <string name="ans_yes">Ναι</string>
     <string name="ans_no">Όχι</string>
+    <string name="title_save_dish">Αποθήκευση πιάτου</string>
 </resources>
