@@ -60,11 +60,20 @@ class RandomDishFragment : Fragment() {
         when (item.itemId) {
             R.id.navigation_save_dish -> {
                 if (randomDish != null) {
-                    randomDishViewModel.insertDish(createDishData(randomDish!!))
+                    try {
+                        randomDishViewModel.insertDish(createDishData(randomDish!!))
+                    } catch (e: Exception) {
+                        Toast.makeText(
+                            requireContext(),
+                            resources.getString(R.string.save_error_data_not_compatible),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.d("Save error:", "${e.localizedMessage}")
+                    }
                 } else {
                     Toast.makeText(
                         requireContext(),
-                        resources.getString(R.string.save_error),
+                        resources.getString(R.string.save_error_data_not_loaded),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -89,9 +98,10 @@ class RandomDishFragment : Fragment() {
                             .load(randomDishResponse.recipes[0].image)
                             .placeholder(circularProgressDrawable)
                             .into(image)
+
                         textSummary.text = Html.fromHtml(
                             randomDishResponse.recipes[0].summary,
-                            Html.FROM_HTML_MODE_COMPACT
+                            FROM_HTML_MODE_COMPACT
                         )
                         cheapCheckbox.isChecked = randomDishResponse.recipes[0].cheap
                         veganCheckbox.isChecked = randomDishResponse.recipes[0].vegan
