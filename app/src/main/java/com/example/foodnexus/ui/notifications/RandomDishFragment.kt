@@ -62,6 +62,11 @@ class RandomDishFragment : Fragment() {
                 if (randomDish != null) {
                     try {
                         randomDishViewModel.insertDish(createDishData(randomDish!!))
+                        Toast.makeText(
+                            requireContext(),
+                            resources.getString(R.string.dish_saved),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } catch (e: Exception) {
                         Toast.makeText(
                             requireContext(),

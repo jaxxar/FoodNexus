@@ -39,6 +39,7 @@
     <string name="healthy_title" translatable="false">healthy</string>
     <string name="cook_time_title" translatable="false">cook time:\n %1$s</string>
     <string name="servings_title" translatable="false">servings:\n %1$s</string>
+    <string name="dish_saved" translatable="false">Dish saved successfully</string>
     <string name="save_error_data_not_loaded" translatable="false">Error upon save, data is not loaded</string>
     <string name="save_error_data_not_compatible" translatable="false">Error upon save, incompatible data</string>
 
